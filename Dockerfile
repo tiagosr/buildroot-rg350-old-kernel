@@ -86,11 +86,10 @@ RUN git clone https://github.com/PortMidi/portmidi.git
 
 WORKDIR /work/libpd
 RUN make CC=/opt/opendingux-toolchain/bin/mipsel-linux-gcc CXX=/opt/opendingux-toolchain/bin/mipsel-linux-g++ STATIC=true
-RUN make CC=/opt/opendingux-toolchain/bin/mipsel-linux-gcc CXX=/opt/opendingux-toolchain/bin/mipsel-linux-g++ STATIC=true prefix=/opt/opendingux-toolchain install
+RUN make CC=/opt/opendingux-toolchain/bin/mipsel-linux-gcc CXX=/opt/opendingux-toolchain/bin/mipsel-linux-g++ STATIC=true prefix=/opt/opendingux-toolchain/mipsel-rg350-linux-uclibc/sysroot/usr install
 
 WORKDIR /work/portmidi
-RUN /usr/bin/bash -c "source /opt/opendingux-toolchain/environment-setup ; cmake CC=mipsel-linux-gcc CXX=mipsel-linux-g++ BUILD_SHARED_LIBS=OFF CMAKE_INSTALL_PREFIX=/opt/opendingux-toolchain ."
-RUN /usr/bin/bash -c "source /opt/opendingux-toolchain/environment-setup ; make && make install"
+RUN /usr/bin/bash -c "source /opt/opendingux-toolchain/environment-setup ; cmake CC=mipsel-linux-gcc CXX=mipsel-linux-g++ BUILD_SHARED_LIBS=OFF CMAKE_INSTALL_PREFIX=/opt/opendingux-toolchain . ; make && make install"
 
 WORKDIR /src
 CMD /usr/bin/bash -l
