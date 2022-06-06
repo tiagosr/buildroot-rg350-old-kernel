@@ -89,7 +89,7 @@ RUN make CC=/opt/opendingux-toolchain/bin/mipsel-linux-gcc CXX=/opt/opendingux-t
 RUN make CC=/opt/opendingux-toolchain/bin/mipsel-linux-gcc CXX=/opt/opendingux-toolchain/bin/mipsel-linux-g++ STATIC=true prefix=/opt/opendingux-toolchain/mipsel-rg350-linux-uclibc/sysroot/usr install
 
 WORKDIR /work/portmidi
-RUN /usr/bin/bash -c "source /opt/opendingux-toolchain/environment-setup ; cmake CC=mipsel-linux-gcc CXX=mipsel-linux-g++ BUILD_SHARED_LIBS=OFF CMAKE_INSTALL_PREFIX=/opt/opendingux-toolchain . ; make && make install"
+RUN /usr/bin/bash -c "source /opt/opendingux-toolchain/environment-setup ; CC=mipsel-linux-gcc CXX=mipsel-linux-g++ cmake -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=/opt/opendingux-toolchain/mipsel-rg350-linux-uclibc/sysroot/usr . && make && make install"
 
 WORKDIR /src
 CMD /usr/bin/bash -l
